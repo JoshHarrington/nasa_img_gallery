@@ -1,4 +1,3 @@
-var gallery = $('.gallery');
 var url = "https://api.nasa.gov/planetary/apod?api_key=aEzO4sjCtnAd0vmMRq7QUSJgFAdp4ASQaDe6mNr8";
 
 function fetchData(callback) {
