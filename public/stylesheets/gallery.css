@@ -1,0 +1,28 @@
+.my-gallery {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.my-gallery figure {
+	margin: 0;
+	width: 24%;
+	margin-right: 1%;
+	margin-bottom: 20px;
+}
+
+.my-gallery figure img {
+	background-color: black;
+	margin-bottom: 10px;
+}
+
+@media (max-width:1000px) {
+	.my-gallery {
+		flex-wrap: wrap;
+	}
+	.my-gallery figure {
+		width: 32%;
+		margin-right: 1%;
+	}
+}

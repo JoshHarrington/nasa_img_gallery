@@ -3,9 +3,16 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/gallery.css')
+    link(rel='stylesheet', href='/stylesheets/alert.css')
     link(rel='stylesheet', href='/stylesheets/photoswipe/photoswipe.css')
     link(rel='stylesheet', href='/stylesheets/photoswipe/default-skin.css')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
   body
+    script(type='text/javascript').
+      if (typeof jQuery == 'undefined') {
+      document.write(unescape("%3Cscript src='/javascripts/jquery/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+      }
     block content
+
 

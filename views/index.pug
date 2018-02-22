@@ -1,10 +1,12 @@
 extends layout
 
 block content
+  .alert(hidden)
+    p Looks like there's an issue with the connection to the API, might be worth reloading the page or checking whether the <a href="https://api.nasa.gov/#live_example">NASA site</a> is working right now
   h1= title
-  p Welcome to #{title}
+  p A gallery of images from the Astronomy Picture of the Day microservice. Reload to see a new selection of images.
+  p It might take a little while to load as the images are quite large. Once they are loaded you can click on the images and zoom to see more detail.
 
-  //- button#btn Open PhotoSwipe
   // Root element of PhotoSwipe. Must have class pswp.
   .pswp(tabindex='-1', role='dialog', aria-hidden='true')
     //
@@ -41,7 +43,7 @@ block content
         .pswp__caption
           .pswp__caption__center
 
-  .my-gallery(itemscope='', itemtype='http://schema.org/ImageGallery')
+  .my-gallery(itemscope, itemtype='http://schema.org/ImageGallery')
 
 
   script(src='/javascripts/photoswipe/photoswipe.min.js')

@@ -1,0 +1,12 @@
+.alert {
+	background-color: #ff9b9b;
+	padding: 15px;
+}
+
+.alert p {
+	margin: 0;
+}
+
+.alert a {
+	color: blue;
+}

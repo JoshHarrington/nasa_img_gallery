@@ -53,8 +53,11 @@ var url = "https://api.nasa.gov/planetary/apod?api_key=aEzO4sjCtnAd0vmMRq7QUSJgF
 function fetchData(callback) {
 	var requests = [];
 	var nasaUrl = url + '&count=6';
-	requests.push($.get(nasaUrl))
-
+	requests.push($.get(nasaUrl).fail(function() {
+		// alert( "error" );
+		$('.alert').removeAttr("hidden");
+  }));
+	
 	$.when.apply($, requests).then(function () {
 		var array = $.map(arguments, function (arg) {
 			return arg;
@@ -66,8 +69,8 @@ function fetchData(callback) {
 fetchData(function (array) {
 	var galleryImgs = $('.my-gallery');
 	for (var i = 0; i < array.length; i++) {
-		if (array[i].media_type == 'image' && array[i].url) {
-			galleryImgs.append('<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="gallery-img-'+ i +'"><a href="' + array[i].url + '" itemprop="contentUrl" data-size="600x400"><img src="' + array[i].url + '" itemprop="thumbnail" alt="' + array[i].title + '" /></a><figcaption itemprop="' + array[i].title + '">' + array[i].title + '</figcaption></figure>');
+		if (array[i].media_type == 'image' && array[i].hdurl) {
+			galleryImgs.append('<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="gallery-img-'+ i +'"><a href="' + array[i].hdurl + '" itemprop="contentUrl" data-size="600x400"><img src="' + array[i].hdurl + '" itemprop="thumbnail" alt="' + array[i].title + '" /></a><figcaption itemprop="' + array[i].title + '">' + array[i].title + '</figcaption></figure>');
 		}
 	}
 	var count = $('.my-gallery figure').length;
@@ -77,33 +80,17 @@ fetchData(function (array) {
 		$('.my-gallery figure:nth-child('+ j +') img').on('load', function() { 
 			var width = $(this).width();
 			var height = $(this).height();
-			var newSize = width + 'x' + height;
+			var ratio = 1500 / width;
+			var newHeight = Math.floor(height * ratio);
+			var newSize = 1500 + 'x' + newHeight;
 			$(this).closest('a').attr("data-size", newSize);
 			console.log(newSize);
 		})
 	}
 
-
 	initPhotoSwipeFromDOM('.my-gallery');
 
-
-
-
-	// console.log(items);
-	// photoSwipeSetup(items);
 });
-
-
-
-// galleryImgs.each(function( i ) {
-// 	var img = $(this).find('img');
-// 	var link = $(this).find('a');
-// 	var width = img.width();
-// 	var height = img.height();
-// 	var newSize = width + 'x' + height;
-// 	link.data("size", 'hello');
-// 	console.log(width);
-// });
 
 
 
