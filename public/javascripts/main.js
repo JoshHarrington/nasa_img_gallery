@@ -1,60 +1,10 @@
 var gallery = $('.gallery');
-
-// var url = "https://api.nasa.gov/planetary/apod?api_key=aEzO4sjCtnAd0vmMRq7QUSJgFAdp4ASQaDe6mNr8";
-
-
-
-
-
-
-// var addItems = function() {
-// 	var numberOfItems = 5;
-	// var url = "https://api.nasa.gov/planetary/apod?api_key=aEzO4sjCtnAd0vmMRq7QUSJgFAdp4ASQaDe6mNr8";
-// 	var items = [];
-	
-	
-	
-	// for (var i = 0; i < numberOfItems; i++) {
-
-	// 	var newDate = moment().subtract(i, 'days').format('YYYY-MM-DD');
-		
-		
-	// 	var nasaUrl = url + '&date=' + newDate;
-
-
-	// 	$.get({
-	// 		url: nasaUrl,
-	// 		success: function(result){
-	// 			// nasaImgUrl = result.url;
-	// 			console.log(result.url);
-	// 		}
-	// 	});
-
-
-
-	// 	items.push({src: nasaImgUrl, w: 250, h: 200});
-
-		// pswp.items.push({
-		// 	src: nasaImgUrl, 
-		// 	w:250,
-		// 	h:200 
-		// });
-	// }
-
-// 	console.log(items);
-	
-// };
-
-// addItems();
-
-
 var url = "https://api.nasa.gov/planetary/apod?api_key=aEzO4sjCtnAd0vmMRq7QUSJgFAdp4ASQaDe6mNr8";
 
 function fetchData(callback) {
 	var requests = [];
 	var nasaUrl = url + '&count=6';
 	requests.push($.get(nasaUrl).fail(function() {
-		// alert( "error" );
 		$('.alert').removeAttr("hidden");
   }));
 	
@@ -80,11 +30,12 @@ fetchData(function (array) {
 		$('.my-gallery figure:nth-child('+ j +') img').on('load', function() { 
 			var width = $(this).width();
 			var height = $(this).height();
+
+			// increase gallery images size
 			var ratio = 1500 / width;
 			var newHeight = Math.floor(height * ratio);
 			var newSize = 1500 + 'x' + newHeight;
 			$(this).closest('a').attr("data-size", newSize);
-			console.log(newSize);
 		})
 	}
 
